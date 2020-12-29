@@ -1,0 +1,45 @@
+#### LR算法
+
+线性回归用于回归，当需要做对是分类任务时，可以引入一个函数，将linear model的是输出与类别预测值练习起来。
+
+**Logistic Function**：a smooth、monotonic、**sigmoid function** of s
+$$
+\theta(x) = \frac{e^s}{1 + e^s} = \frac{1}{1+e^{-s}}
+$$
+**Logistic Regression：**use logistic function and linear model to approximate target function.
+$$
+h(x) = \frac{1}{1+e^{-w^T*x}}
+$$
+对于模型参数的预测，我们可以采用极大似然估计。假设存在训练集合$T= {(x_1,y_1),(x_2,y_2),...,(x_n,y_n)},\ y\in\{0,1\}
+$$
+argmax \ likelihood(h) = \sum_i^N[y_i(w*x_i) - log(1+exp(w*x_i))]
+$$
+
+**Multi-nominal LR 多项logistic回归**
+
+上述LR只能解决而分类问题，如果需要进行多分类时，一般有两种方案：
+
+1. 拆分为多个二分类问题
+2. 对LR模型进行改造
+
+**多分类拆分：**
+
+n个类别
+
+- OvO(one vs one)，将多个分类，两两配对，使用$n(n-1)/2$个分类器，最后采用结果次数最多的作为答案。
+
+  ![](https://static001.infoq.cn/resource/image/26/f7/264a3d3129351a6fbc7dafc8969a2ef7.png)
+
+- OvM(one vs many)，将多个分类，一个类别作为正例，其余类别作为反例，产生n个分类器。如果结果只有一个正例，则将其作为最终结果，否则，选择置信度最大的作为结果。
+
+  ![](https://static001.infoq.cn/resource/image/1e/5a/1e6c7da0f88649b7491d96f7bd2f295a.png)
+
+- MvM(many vs many)，每次将若干类作为正类，若干其他类作为反类，构造如ECOC等编码（纠错输出码，Error Correcting Output Codes），之后对N个类别进行M次划分，得到M个分类器，将M个分类器得到的结果组合成一个编码，将这个编码与各类别编码做比较，返回其中距离最小的类别作为最终预测结果。
+
+**Softmax 改造**
+
+**Softmax Function：**
+$$
+softmax(x) = \frac{e^i}{\sum_{k=1}^ce^k}
+$$
+

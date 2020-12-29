@@ -1,0 +1,7 @@
+.idea/
+.ipynb_checkpoints/
+recommendSys/.ipynb_checkpoints
+Solution.py
+dataset
+seq2seq/dataset
+seq2seq/dataset.zip
