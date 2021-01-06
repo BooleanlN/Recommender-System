@@ -1,5 +1,5 @@
-#### 感知机（Perceptron）
-
+### 感知机（Perceptron）
+**Perceptron Learning Algorithm**   
 $$
 f(x) = sign( wx + b)\\
 y = \{-1,+1\}
@@ -7,7 +7,7 @@ $$
 
 以错误驱动的思想，使用误分类点更新参数w和b，不断逼近正确的分类超平面的过程。
 
-为了更新参数w和b，需要一个可导的损失函数，所以采用误分类点到超平面总距离，作为优化到目标：
+为了更新参数w和b，需要一个可导的损失函数，所以采用误分类点到超平面总距离，作为优化到目标：   
 $$
 \frac{-\sum_{x\in{M}}yi(w_ix_i+b)}{||w||}\propto{L(w,b)}\\
 （M是误分类点集合）
@@ -29,9 +29,20 @@ $$
 
   该算法的收敛性由Novikoff定理给出。
 
-  该定理证明：
+  Novikoff定理：
 
-  ![IMG_0047](/Users/jiayi/Documents/IMG_0047.jpg)
+  设训练数据集$T={(x_1,y_1),(x_2,y_2),...,(x_n,y_n)}$是线性可分的，存在$x\in \chi=R^n,y\in Y=\{-1,+1\},i=1,2,...,N$则
+
+  (1)存在满足条件||W||=1的超平面$w_{opt}*x+b_{opt} = 0$将训练集完全正确分开；且存在$\gamma$，对所有$1,2,3,...,N$
+  $$
+  y_i(w_{opt}x_i + b_{opt}) \geq \gamma 
+  $$
+  (2)令$R = max_{1\leq i \leq N}||x_i||$，则感知机算法在训练集上误分类次数k满足不等式：
+  $$
+  k \leq(\frac{R}{\gamma})^2
+  $$
+
+R可以理解为离原点，也就是初始超平面最远的点，它越大需要的迭代次数越多，$\gamma$则是代表离最终的分割超平面最近的点，该点很容易被误分类，因此越小，离得越近，则需要的迭代次数越多。
 
 - 对偶形式
 
@@ -67,4 +78,4 @@ $$
 
   [Novikoff收敛性定理证明](https://blog.csdn.net/iwangzhengchao/article/details/54486473?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 
-#### 
+  [感知机对偶形式理解](https://www.zhihu.com/question/26526858)
